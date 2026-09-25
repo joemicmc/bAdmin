@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:models="clr-namespace:Badmin.Models"
+			 xmlns:viewModels="clr-namespace:Badmin.ViewModels"
+			 x:Class="Badmin.Views.PlayersView"
+			 x:DataType="viewModels:PlayersViewModel"
+			 Title="Players">
+	<VerticalStackLayout Padding="10" Spacing="10">
+		<CollectionView Header="{Binding .}"
+				ItemsSource="{Binding Players}">
+			<CollectionView.HeaderTemplate>
+				<DataTemplate>
+					<Grid ColumnSpacing="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+						</Grid.ColumnDefinitions>
+						<Label Text="Player"
+							   FontAttributes="Bold"
+							   Grid.Column="0"/>
+					</Grid>
+				</DataTemplate>
+			</CollectionView.HeaderTemplate>
+			<CollectionView.ItemTemplate>
+				<DataTemplate x:DataType="models:Player">
+					<Grid ColumnSpacing="10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*"/>
+						</Grid.ColumnDefinitions>
+						<Label Text="{Binding Name}"
+							   Grid.Column="0"/>
+					</Grid>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+		<Button Text="Add Player"
+				WidthRequest="150"
+				Command="{Binding NavgiateToPlayerCommand}"/>
+	</VerticalStackLayout>
+</ContentPage>

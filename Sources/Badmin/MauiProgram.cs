@@ -1,6 +1,9 @@
 ﻿namespace Badmin
 {
 	using Badmin.ViewModels;
+	using Badmin.Views;
+
+	using CommunityToolkit.Maui;
 
 	using Microsoft.Extensions.Logging;
 
@@ -11,6 +14,7 @@
 			var builder = MauiApp.CreateBuilder();
 			builder
 				.UseMauiApp<App>()
+				.UseMauiCommunityToolkit()
 				.ConfigureFonts(fonts =>
 				{
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -20,7 +24,11 @@
 #if DEBUG
 			builder.Logging.AddDebug();
 #endif
-			builder.Services.AddSingleton<MainViewModel>();
+			builder.Services.AddSingleton<TableViewModel>();
+			builder.Services.AddSingleton<SessionViewModel>();
+			builder.Services.AddSingleton<PlayersViewModel>();
+
+			builder.Services.AddTransientWithShellRoute<EditPlayerView, EditPlayerViewModel>("player");
 
 			return builder.Build();
 		}

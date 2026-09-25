@@ -9,9 +9,18 @@
 			InitializeComponent();
 		}
 
-		protected override Window CreateWindow(IActivationState? activationState)
+		protected override Window CreateWindow(IActivationState activationState)
 		{
-			return new Window(new AppShell());
+			const int newHeight = 800;
+			const int newWidth = 400;
+
+			var newWindow = new Window(new AppShell())
+			{
+				Height = newHeight,
+				Width = newWidth
+			};
+
+			return newWindow;
 		}
 	}
 }
